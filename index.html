@@ -1,395 +1,265 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>TinkyStream</title>
 
 <style>
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
-    background: #070707;
+    background: #080808;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* =========================
-   NAVIGATION
-========================= */
-
-.navbar {
+header {
     position: sticky;
     top: 0;
-    z-index: 999;
+    z-index: 1000;
+    background: #090909;
+    border-bottom: 1px solid #35101a;
+    padding: 16px 5%;
+}
 
-    height: 72px;
-
+.navbar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-
-    padding: 0 45px;
-
-    background: rgba(7,7,7,0.97);
-    border-bottom: 1px solid #301018;
+    gap: 30px;
 }
 
 .logo {
-    font-size: 27px;
-    font-weight: 900;
-    letter-spacing: -1px;
+    color: #a7193d;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-.logo span {
-    color: #9d1736;
-}
-
-.nav-links {
+nav {
     display: flex;
-    gap: 25px;
-    list-style: none;
+    gap: 18px;
+    flex: 1;
 }
 
-.nav-links a {
+nav a {
     color: #ddd;
     text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
 }
 
-.nav-links a:hover {
-    color: #b51d40;
+nav a:hover {
+    color: #c52a50;
 }
 
-.search-box {
-    width: 210px;
-
-    background: #141414;
-    border: 1px solid #401522;
-
+.search {
+    background: #181818;
+    border: 1px solid #333;
     color: white;
-
-    padding: 10px 15px;
-
-    border-radius: 25px;
-
+    padding: 9px 15px;
+    border-radius: 20px;
     outline: none;
+    width: 190px;
 }
 
-.search-box:focus {
-    border-color: #a51b3b;
-}
-
-/* =========================
-   HERO
-========================= */
+/* HERO */
 
 .hero {
-    min-height: 590px;
-
+    min-height: 400px;
+    padding: 80px 7%;
     display: flex;
     align-items: center;
-
-    padding: 70px;
 
     background:
         linear-gradient(
             90deg,
-            #070707 0%,
-            #070707 30%,
-            rgba(7,7,7,.75) 60%,
-            rgba(7,7,7,.25) 100%
+            #080808 10%,
+            rgba(8,8,8,.8),
+            rgba(8,8,8,.2)
         ),
         radial-gradient(
-            circle at 80% 45%,
-            #64162c,
-            #1b080e 45%,
-            #070707 75%
+            circle at 75% 40%,
+            #64172f,
+            #190910 50%,
+            #080808 80%
         );
 }
 
 .hero-content {
-    max-width: 600px;
-}
-
-.featured {
-    display: inline-block;
-
-    padding: 7px 14px;
-
-    background: #83152f;
-
-    border-radius: 20px;
-
-    font-size: 11px;
-    font-weight: bold;
-
-    margin-bottom: 18px;
+    max-width: 650px;
 }
 
 .hero h1 {
-    font-size: 65px;
-    line-height: .95;
-
-    margin-bottom: 20px;
+    font-size: 55px;
+    margin-bottom: 15px;
 }
 
 .hero h1 span {
-    color: #a91c3d;
+    color: #a7193d;
 }
 
-.hero-description {
-    color: #c5c5c5;
-
+.hero p {
+    color: #ccc;
     line-height: 1.7;
-
     margin-bottom: 25px;
 }
 
-.buttons {
-    display: flex;
-    gap: 12px;
-}
-
 .btn {
+    background: #a7193d;
+    color: white;
     border: none;
-
-    padding: 13px 23px;
-
-    border-radius: 7px;
-
+    padding: 12px 22px;
+    border-radius: 6px;
     cursor: pointer;
-
     font-weight: bold;
 }
 
-.primary {
-    background: #941a39;
-    color: white;
+.btn:hover {
+    background: #c52a50;
 }
 
-.primary:hover {
-    background: #b52347;
-}
-
-.secondary {
-    background: #262626;
-    color: white;
-}
-
-/* =========================
-   MAIN
-========================= */
-
-main {
-    padding: 40px 45px 70px;
-}
+/* SECTIONS */
 
 .section {
-    margin-bottom: 50px;
+    padding: 40px 5%;
 }
 
-.section-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    margin-bottom: 18px;
+.section-title {
+    font-size: 26px;
+    margin-bottom: 20px;
 }
 
-.section-heading h2 {
-    font-size: 23px;
-}
-
-.see-all {
-    color: #ad1c3d;
-    text-decoration: none;
-    font-size: 13px;
-}
-
-/* =========================
-   CATEGORY BUTTONS
-========================= */
+/* CATEGORY BUTTONS */
 
 .categories {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
-
-    overflow-x: auto;
-
-    padding-bottom: 10px;
 }
 
-.category {
-    background: #151515;
-
-    border: 1px solid #35131c;
-
+.categories button {
+    background: #191919;
+    border: 1px solid #333;
     color: #ddd;
-
-    padding: 10px 17px;
-
-    border-radius: 25px;
-
+    padding: 10px 18px;
+    border-radius: 20px;
     cursor: pointer;
-
-    white-space: nowrap;
 }
 
-.category:hover,
-.category.active {
-    background: #861630;
-    color: white;
+.categories button:hover {
+    background: #78172f;
 }
 
-/* =========================
-   CARDS
-========================= */
+/* CARDS */
 
-.cards {
+.grid {
     display: grid;
-
     grid-template-columns:
-        repeat(auto-fill, minmax(175px, 1fr));
+        repeat(auto-fill, minmax(180px, 1fr));
 
     gap: 18px;
 }
 
 .card {
-    background: #111;
-
-    border: 1px solid #1e1e1e;
-
-    border-radius: 9px;
-
+    background: #121212;
+    border: 1px solid #222;
+    border-radius: 8px;
     overflow: hidden;
-
     cursor: pointer;
-
-    transition: .25s;
+    transition: .2s;
 }
 
 .card:hover {
-    transform: translateY(-6px);
-
-    border-color: #75152b;
-
-    box-shadow:
-        0 15px 30px rgba(0,0,0,.55);
+    transform: scale(1.04);
+    border-color: #a7193d;
 }
 
 .poster {
-    height: 245px;
-
+    height: 250px;
+    padding: 15px;
     display: flex;
     align-items: flex-end;
-
-    padding: 13px;
+    position: relative;
 
     background:
         linear-gradient(
             145deg,
-            #541323,
-            #17080d
+            #57142a,
+            #151515
         );
 }
 
-.poster-number {
-    font-size: 65px;
+.play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
 
-    font-weight: 900;
+    transform: translate(-50%, -50%);
 
-    color: rgba(255,255,255,.09);
-}
-
-.card-info {
-    padding: 13px;
-}
-
-.card-title {
-    font-weight: bold;
-
-    margin-bottom: 6px;
-}
-
-.card-meta {
-    color: #888;
-
-    font-size: 12px;
-}
-
-/* =========================
-   LIVE
-========================= */
-
-.live-box {
-    padding: 25px;
-
-    border-radius: 13px;
-
-    background:
-        linear-gradient(
-            110deg,
-            #220910,
-            #100609
-        );
-
-    border: 1px solid #4d1422;
-}
-
-.live-heading {
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    margin-bottom: 20px;
-}
-
-.live-dot {
-    width: 10px;
-    height: 10px;
-
-    background: #e21d46;
+    width: 58px;
+    height: 58px;
 
     border-radius: 50%;
 
-    box-shadow: 0 0 12px #e21d46;
+    background: #a7193d;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 23px;
+
+    opacity: 0;
 }
 
-/* =========================
-   WATCH SCREEN
-========================= */
+.card:hover .play {
+    opacity: 1;
+}
 
-.watch-screen {
+.poster-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.card-info {
+    padding: 12px;
+}
+
+.card-info h3 {
+    margin-bottom: 6px;
+}
+
+.card-info p {
+    color: #888;
+    font-size: 12px;
+}
+
+/* PLAYER */
+
+#playerScreen {
     display: none;
 
     position: fixed;
-
     inset: 0;
 
-    z-index: 2000;
+    z-index: 5000;
 
-    background: #050505;
+    background: #000;
 
     overflow-y: auto;
 }
 
-.watch-header {
+.player-header {
     height: 70px;
+
+    background: #090909;
+
+    border-bottom: 1px solid #222;
 
     display: flex;
 
@@ -397,1122 +267,870 @@ main {
 
     justify-content: space-between;
 
-    padding: 0 30px;
-
-    border-bottom: 1px solid #281017;
+    padding: 0 4%;
 }
 
-.close-player {
-    background: #241016;
-
-    color: white;
+.close {
+    width: 42px;
+    height: 42px;
 
     border: none;
+    border-radius: 50%;
 
-    padding: 10px 16px;
+    background: #a7193d;
+    color: white;
 
-    border-radius: 6px;
+    font-size: 20px;
 
     cursor: pointer;
 }
 
-.player-area {
+.video-wrapper {
+    width: 92%;
     max-width: 1100px;
 
     margin: 35px auto;
-
-    padding: 20px;
 }
 
-.video-container {
+#videoFrame {
     width: 100%;
 
     aspect-ratio: 16 / 9;
 
-    background: black;
-
-    border: 1px solid #35111a;
-
-    border-radius: 8px;
-
-    overflow: hidden;
-}
-
-.video-container video {
-    width: 100%;
-    height: 100%;
+    border: none;
 
     background: black;
 }
 
-.player-title {
-    margin-top: 20px;
+.player-description {
+    width: 92%;
+    max-width: 1100px;
 
-    font-size: 24px;
+    margin: auto;
+
+    padding-bottom: 50px;
 }
 
-.player-info {
-    color: #999;
+.player-description p {
+    color: #aaa;
 
-    margin-top: 8px;
+    line-height: 1.6;
+
+    margin-top: 10px;
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* FOOTER */
 
 footer {
-    border-top: 1px solid #281017;
+    margin-top: 50px;
+
+    border-top: 1px solid #222;
 
     text-align: center;
 
     padding: 35px;
 
-    color: #666;
-
-    font-size: 13px;
+    color: #777;
 }
 
-footer strong {
-    color: #941a39;
-}
+/* MOBILE */
 
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width: 850px) {
+@media(max-width:800px) {
 
     .navbar {
-        padding: 0 18px;
+        flex-wrap: wrap;
     }
 
-    .nav-links {
-        display: none;
+    nav {
+        order: 3;
+        width: 100%;
+        overflow-x: auto;
     }
 
-    .search-box {
-        width: 145px;
-    }
-
-    .hero {
-        padding: 45px 25px;
-
-        min-height: 500px;
+    .search {
+        width: 140px;
     }
 
     .hero h1 {
-        font-size: 48px;
+        font-size: 38px;
     }
 
-    main {
-        padding: 30px 20px;
-    }
-
-    .cards {
-        grid-template-columns:
-            repeat(2, 1fr);
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .poster {
-        height: 215px;
+        height: 220px;
     }
-
 }
-
 </style>
-
 </head>
+
 
 <body>
 
-<!-- =========================
-     NAVIGATION
-========================= -->
 
-<nav class="navbar">
+<!-- NAVIGATION -->
 
-```
-<div class="logo">
-    Tinky<span>Stream</span>
+<header>
+
+<div class="navbar">
+
+<div
+class="logo"
+onclick="showHome()">
+TinkyStream
 </div>
 
-<ul class="nav-links">
+<nav>
 
-    <li>
-        <a href="#home">Home</a>
-    </li>
+<a onclick="showHome()">Home</a>
 
-    <li>
-        <a href="#movies">Movies</a>
-    </li>
+<a onclick="showCategory('Movies')">
+Movies
+</a>
 
-    <li>
-        <a href="#series">Series</a>
-    </li>
+<a onclick="showCategory('Series')">
+Series
+</a>
 
-    <li>
-        <a href="#anime">Anime</a>
-    </li>
+<a onclick="showCategory('Anime')">
+Anime
+</a>
 
-    <li>
-        <a href="#dramas">Short Dramas</a>
-    </li>
-
-    <li>
-        <a href="#live">Live</a>
-    </li>
-
-</ul>
-
-<input
-    id="searchBox"
-    class="search-box"
-    type="text"
-    placeholder="Search..."
-    onkeyup="searchContent()"
->
-```
+<a onclick="showCategory('Short Dramas')">
+Short Dramas
+</a>
 
 </nav>
 
-<!-- =========================
-     HERO
-========================= -->
-
-<section class="hero" id="home">
-
-```
-<div class="hero-content">
-
-    <div class="featured">
-        🔥 FEATURED
-    </div>
-
-    <h1>
-        Welcome to
-        <span>TinkyStream</span>
-    </h1>
-
-    <p class="hero-description">
-        Your entertainment universe for movies,
-        series, anime, short dramas and authorised
-        live entertainment.
-    </p>
-
-    <div class="buttons">
-
-        <button
-            class="btn primary"
-            onclick="openPlayer('Featured Content')">
-
-            ▶ Watch Now
-
-        </button>
-
-        <button
-            class="btn secondary"
-            onclick="addToList('Featured Content')">
-
-            + My List
-
-        </button>
-
-    </div>
+<input
+class="search"
+id="searchBox"
+type="text"
+placeholder="Search..."
+oninput="searchContent()">
 
 </div>
-```
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>
+Welcome to
+<span>TinkyStream</span>
+</h1>
+
+<p>
+Movies, series, anime and short dramas
+all organized in one place.
+</p>
+
+<button
+class="btn"
+onclick="showHome()">
+▶ Start Watching
+</button>
+
+</div>
 
 </section>
 
-<main>
 
-<!-- =========================
-     CATEGORIES
-========================= -->
+<!-- CATEGORY BUTTONS -->
 
 <section class="section">
 
-```
-<div class="section-heading">
-
-    <h2>Browse</h2>
-
-</div>
+<h2 class="section-title">
+Browse TinkyStream
+</h2>
 
 <div class="categories">
 
-    <button
-        class="category active"
-        onclick="filterCategory('all')">
+<button onclick="showHome()">
+🏠 Home
+</button>
 
-        All
+<button onclick="showCategory('Movies')">
+🎬 Movies
+</button>
 
-    </button>
+<button onclick="showCategory('Series')">
+📺 Series
+</button>
 
-    <button
-        class="category"
-        onclick="filterCategory('movie')">
+<button onclick="showCategory('Anime')">
+🎌 Anime
+</button>
 
-        🎬 Movies
-
-    </button>
-
-    <button
-        class="category"
-        onclick="filterCategory('series')">
-
-        📺 Series
-
-    </button>
-
-    <button
-        class="category"
-        onclick="filterCategory('anime')">
-
-        🌸 Anime
-
-    </button>
-
-    <button
-        class="category"
-        onclick="filterCategory('drama')">
-
-        💕 Short Dramas
-
-    </button>
-
-    <button
-        class="category"
-        onclick="filterCategory('documentary')">
-
-        🎥 Documentaries
-
-    </button>
+<button onclick="showCategory('Short Dramas')">
+🎭 Short Dramas
+</button>
 
 </div>
-```
 
 </section>
 
-<!-- =========================
-     TRENDING
-========================= -->
 
-<section class="section">
+<!-- MOVIES -->
 
-```
-<div class="section-heading">
+<section
+class="section"
+id="moviesSection">
 
-    <h2>🔥 Trending Now</h2>
-
-    <a href="#" class="see-all">
-        See All →
-    </a>
-
-</div>
-
-
-<div class="cards">
-
-
-    <div
-        class="card"
-        data-category="movie"
-        data-title="Featured Movie"
-        onclick="openPlayer('Featured Movie')">
-
-        <div class="poster">
-
-            <div class="poster-number">
-                01
-            </div>
-
-        </div>
-
-        <div class="card-info">
-
-            <div class="card-title">
-                Featured Movie
-            </div>
-
-            <div class="card-meta">
-                Movie • 2026
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div
-        class="card"
-        data-category="series"
-        data-title="Trending Series"
-        onclick="openPlayer('Trending Series')">
-
-        <div class="poster">
-
-            <div class="poster-number">
-                02
-            </div>
-
-        </div>
-
-        <div class="card-info">
-
-            <div class="card-title">
-                Trending Series
-            </div>
-
-            <div class="card-meta">
-                Series • New
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div
-        class="card"
-        data-category="anime"
-        data-title="Popular Anime"
-        onclick="openPlayer('Popular Anime')">
-
-        <div class="poster">
-
-            <div class="poster-number">
-                03
-            </div>
-
-        </div>
-
-        <div class="card-info">
-
-            <div class="card-title">
-                Popular Anime
-            </div>
-
-            <div class="card-meta">
-                Anime • Sub & Dub
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div
-        class="card"
-        data-category="drama"
-        data-title="Short Drama"
-        onclick="openPlayer('Short Drama')">
-
-        <div class="poster">
-
-            <div class="poster-number">
-                04
-            </div>
-
-        </div>
-
-        <div class="card-info">
-
-            <div class="card-title">
-                Short Drama
-            </div>
-
-            <div class="card-meta">
-                Drama • New
-            </div>
-
-        </div>
-
-    </div>
-
-
-</div>
-```
-
-</section>
-
-<!-- =========================
-     MOVIES
-========================= -->
-
-<section class="section" id="movies">
-
-```
-<div class="section-heading">
-
-    <h2>🎬 Movies</h2>
-
-    <a href="#" class="see-all">
-        See All →
-    </a>
-
-</div>
-
-
-<div class="cards">
-
-
-    <div
-        class="card"
-        data-category="movie"
-        data-title="Movie One"
-        onclick="openPlayer('Movie One')">
-
-        <div class="poster">
-            <div class="poster-number">01</div>
-        </div>
-
-        <div class="card-info">
-
-            <div class="card-title">
-                Movie One
-            </div>
-
-            <div class="card-meta">
-                Movie • Drama
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div
-        class="card"
-        data-category="movie"
-        data-title="Movie Two"
-        onclick="openPlayer('Movie Two')">
-
-        <div class="poster">
-            <div class="poster-number">02</div>
-        </div>
-
-        <div class="card-info">
-
-            <div class="card-title">
-                Movie Two
-            </div>
-
-            <div class="card-meta">
-                Movie • Action
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div
-        class="card"
-        data-category="movie"
-        data-title="Movie Three"
-        onclick="openPlayer('Movie Three')">
-
-        <div class="poster">
-            <div class="poster-number">03</div>
-        </div>
-
-        <div class="card-info">
-
-            <div class="card-title">
-                Movie Three
-            </div>
-
-            <div class="card-meta">
-                Movie • Comedy
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div
-        class="card"
-        data-category="movie"
-        data-title="Movie Four"
-        onclick="openPlayer('Movie Four')">
-
-        <div class="poster">
-            <div class="poster-number">04</div>
-        </div>
-
-        <div class="card-info">
-
-            <div class="card-title">
-                Movie Four
-            </div>
-
-            <div class="card-meta">
-                Movie • Mystery
-            </div>
-
-        </div>
-
-    </div>
-
-
-</div>
-```
-
-</section>
-
-<!-- =========================
-     SERIES
-========================= -->
-
-<section class="section" id="series">
-
-```
-<div class="section-heading">
-
-    <h2>📺 Series</h2>
-
-    <a href="#" class="see-all">
-        See All →
-    </a>
-
-</div>
-
-
-<div class="cards">
-
-
-    <div
-        class="card"
-        data-category="series"
-        data-title="Series One"
-        onclick="openPlayer('Series One - Episode 1')">
-
-        <div class="poster">
-            <div class="poster-number">01</div>
-        </div>
-
-        <div class="card-info">
-
-            <div class="card-title">
-                Series One
-            </div>
-
-            <div class="card-meta">
-                Season 1 • Episode 1
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div
-        class="card"
-        data-category="series"
-        data-title="Series Two"
-        onclick="openPlayer('Series Two - Episode 1')">
-
-        <div class="poster">
-            <div class="poster-number">02</div>
-        </div>
-
-        <div class="card-info">
-
-            <div class="card-title">
-                Series Two
-            </div>
-
-            <div class="card-meta">
-                Season 1 • Episode 1
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div
-        class="card"
-        data-category="series"
-        data-title="Series Three"
-        onclick="openPlayer('Series Three - Episode 1')">
-
-        <div class="poster">
-            <div class="poster-number">03</div>
-        </div>
-
-        <div class="card-info">
-
-            <div class="card-title">
-                Series Three
-            </div>
-
-            <div class="card-meta">
-                Season 1 • Episode 1
-            </div>
-
-        </div>
-
-    </div>
-
-
-</div>
-```
-
-</section>
-
-<!-- =========================
-     ANIME
-========================= -->
-
-<section class="section" id="anime">
-
-```
-<div class="section-heading">
-
-    <h2>🌸 Anime</h2>
-
-    <a href="#" class="see-all">
-        See All →
-    </a>
-
-</div>
-
-
-<div class="cards">
-
-
-    <div
-        class="card"
-        data-category="anime"
-        data-title="Anime One"
-        onclick="openPlayer('Anime One')">
-
-        <div class="poster">
-            <div class="poster-number">01</div>
-        </div>
-
-        <div class="card-info">
-
-            <div class="card-title">
-                Anime One
-            </div>
-
-            <div class="card-meta">
-                Anime • Sub & Dub
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div
-        class="card"
-        data-category="anime"
-        data-title="Anime Two"
-        onclick="openPlayer('Anime Two')">
-
-        <div class="poster">
-            <div class="poster-number">02</div>
-        </div>
-
-        <div class="card-info">
-
-            <div class="card-title">
-                Anime Two
-            </div>
-
-            <div class="card-meta">
-                Anime • 24 Episodes
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div
-        class="card"
-        data-category="anime"
-        data-title="Anime Three"
-        onclick="openPlayer('Anime Three')">
-
-        <div class="poster">
-            <div class="poster-number">03</div>
-        </div>
-
-        <div class="card-info">
-
-            <div class="card-title">
-                Anime Three
-            </div>
-
-            <div class="card-meta">
-                Anime • New
-            </div>
-
-        </div>
-
-    </div>
-
-
-</div>
-```
-
-</section>
-
-<!-- =========================
-     SHORT DRAMAS
-========================= -->
-
-<section class="section" id="dramas">
-
-```
-<div class="section-heading">
-
-    <h2>💕 Short Dramas</h2>
-
-    <a href="#" class="see-all">
-        See All →
-    </a>
-
-</div>
-
-
-<div class="cards">
-
-
-    <div
-        class="card"
-        data-category="drama"
-        data-title="Drama One"
-        onclick="openPlayer('Drama One')">
-
-        <div class="poster">
-            <div class="poster-number">01</div>
-        </div>
-
-        <div class="card-info">
-
-            <div class="card-title">
-                Drama One
-            </div>
-
-            <div class="card-meta">
-                12 Episodes
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div
-        class="card"
-        data-category="drama"
-        data-title="Drama Two"
-        onclick="openPlayer('Drama Two')">
-
-        <div class="poster">
-            <div class="poster-number">02</div>
-        </div>
-
-        <div class="card-info">
-
-            <div class="card-title">
-                Drama Two
-            </div>
-
-            <div class="card-meta">
-                8 Episodes
-            </div>
-
-        </div>
-
-    </div>
-
-
-</div>
-```
-
-</section>
-
-<!-- =========================
-     LIVE
-========================= -->
-
-<section class="section" id="live">
-
-```
-<div class="section-heading">
-
-    <h2>🔴 Live Now</h2>
-
-</div>
-
-
-<div class="live-box">
-
-    <div class="live-heading">
-
-        <div class="live-dot"></div>
-
-        <h3>Live Entertainment</h3>
-
-    </div>
-
-
-    <p style="color:#999; margin-bottom:20px;">
-
-        Authorised live streams can be connected
-        to TinkyStream here.
-
-    </p>
-
-
-    <button
-        class="btn primary"
-        onclick="openPlayer('Live Channel')">
-
-        ▶ Watch Live
-
-    </button>
-
-</div>
-```
-
-</section>
-
-</main>
-
-<!-- =========================
-     WATCH PLAYER
-========================= -->
+<h2 class="section-title">
+🎬 Movies
+</h2>
 
 <div
-    class="watch-screen"
-    id="watchScreen">
+class="grid"
+id="moviesGrid">
+</div>
 
-```
-<div class="watch-header">
-
-    <div class="logo">
-        Tinky<span>Stream</span>
-    </div>
+</section>
 
 
-    <button
-        class="close-player"
-        onclick="closePlayer()">
+<!-- SERIES -->
 
-        ✕ Close
+<section
+class="section"
+id="seriesSection">
 
-    </button>
+<h2 class="section-title">
+📺 Series
+</h2>
+
+<div
+class="grid"
+id="seriesGrid">
+</div>
+
+</section>
+
+
+<!-- ANIME -->
+
+<section
+class="section"
+id="animeSection">
+
+<h2 class="section-title">
+🎌 Anime
+</h2>
+
+<div
+class="grid"
+id="animeGrid">
+</div>
+
+</section>
+
+
+<!-- SHORT DRAMAS -->
+
+<section
+class="section"
+id="shortDramasSection">
+
+<h2 class="section-title">
+🎭 Short Dramas
+</h2>
+
+<div
+class="grid"
+id="shortDramasGrid">
+</div>
+
+</section>
+
+
+<!-- PLAYER -->
+
+<div id="playerScreen">
+
+<div class="player-header">
+
+<h2 id="playerTitle">
+Now Playing
+</h2>
+
+<button
+class="close"
+onclick="closePlayer()">
+✕
+</button>
 
 </div>
 
 
-<div class="player-area">
+<div class="video-wrapper">
 
-
-    <div class="video-container">
-
-        <video
-            id="videoPlayer"
-            controls>
-
-            <p>
-                Your browser does not support video.
-            </p>
-
-        </video>
-
-    </div>
-
-
-    <h2
-        class="player-title"
-        id="playerTitle">
-
-        TinkyStream
-
-    </h2>
-
-
-    <p class="player-info">
-
-        Add your authorised video source to
-        connect actual content to this player.
-
-    </p>
-
-
-</div>
-```
+<iframe
+id="videoFrame"
+allow="autoplay; fullscreen; picture-in-picture"
+allowfullscreen>
+</iframe>
 
 </div>
 
-<!-- =========================
-     FOOTER
-========================= -->
+
+<div class="player-description">
+
+<h1 id="descriptionTitle"></h1>
+
+<p id="descriptionText"></p>
+
+</div>
+
+</div>
+
+
+<!-- FOOTER -->
 
 <footer>
 
-```
-<strong>TinkyStream</strong>
-
-<br><br>
-
-Your entertainment universe.
-
-<br><br>
-
+<p>
 © 2026 TinkyStream
-```
+</p>
+
+<br>
+
+<p>
+Free and authorized content only.
+</p>
 
 </footer>
 
+
 <script>
 
-/* =========================
-   PLAYER
-========================= */
+/*
+====================================================
+CONTENT LIBRARY
+====================================================
 
-function openPlayer(title) {
+Each item belongs to one category.
 
-    document.getElementById("watchScreen")
-        .style.display = "block";
+The YouTube IDs below are used for the
+authorized/open content we are demonstrating.
 
-    document.getElementById("playerTitle")
-        .textContent = title;
+You can add more authorized titles later.
+====================================================
+*/
 
-    document.body.style.overflow = "hidden";
+
+const content = [
+
+/* ================= MOVIES ================= */
+
+{
+title: "Big Buck Bunny",
+category: "Movies",
+year: "2008",
+description:
+"Blender's famous Open Movie about a peaceful rabbit and the mischievous creatures of the forest.",
+youtube: "YE7VzlLtp-4"
+},
+
+{
+title: "Tears of Steel",
+category: "Movies",
+year: "2012",
+description:
+"A science-fiction Open Movie produced by the Blender Foundation.",
+youtube: "R6MlUcmOul8"
+},
+
+{
+title: "Elephants Dream",
+category: "Movies",
+year: "2006",
+description:
+"One of Blender's earliest Open Movie projects.",
+youtube: "eRsGyueVLvQ"
+},
+
+
+/* ================= SERIES ================= */
+
+/*
+These are placeholders for your SERIES section.
+
+We are keeping the section separate now.
+You can add authorized episodes here later.
+*/
+
+{
+title: "Open Series Episode 1",
+category: "Series",
+year: "Free",
+description:
+"An authorized free episode can be added here.",
+youtube: "YE7VzlLtp-4"
+},
+
+{
+title: "Open Series Episode 2",
+category: "Series",
+year: "Free",
+description:
+"An authorized free episode can be added here.",
+youtube: "R6MlUcmOul8"
+},
+
+
+/* ================= ANIME ================= */
+
+{
+title: "Sintel",
+category: "Anime",
+year: "2010",
+description:
+"An animated fantasy Open Movie from Blender.",
+youtube: "eRsGyueVLvQ"
+},
+
+{
+title: "Sprite Fright",
+category: "Anime",
+year: "2021",
+description:
+"A stylized animated Open Movie from Blender Studio.",
+youtube: "Mj3M5eG3d3Q"
+},
+
+
+/* ================= SHORT DRAMAS ================= */
+
+{
+title: "Spring",
+category: "Short Dramas",
+year: "2019",
+description:
+"An animated short film from Blender's Open Movie collection.",
+youtube: "WhWc3b3KhnY"
+},
+
+{
+title: "Coffee Run",
+category: "Short Dramas",
+year: "2020",
+description:
+"A short animated film from Blender Studio.",
+youtube: "c4J8u4qYb6I"
+}
+
+];
+
+
+/*
+====================================================
+CREATE CARD
+====================================================
+*/
+
+function createCard(item) {
+
+const card =
+document.createElement("div");
+
+card.className = "card";
+
+
+card.innerHTML = `
+
+<div class="poster">
+
+<div class="play">
+▶
+</div>
+
+<div class="poster-title">
+${item.title}
+</div>
+
+</div>
+
+<div class="card-info">
+
+<h3>
+${item.title}
+</h3>
+
+<p>
+${item.category} • ${item.year}
+</p>
+
+</div>
+
+`;
+
+
+card.onclick = function() {
+
+openPlayer(item);
+
+};
+
+
+return card;
 
 }
 
 
-function closePlayer() {
+/*
+====================================================
+DISPLAY CATEGORY
+====================================================
+*/
 
-    const screen =
-        document.getElementById("watchScreen");
+function displayCategory(
+category,
+gridId
+) {
 
-    screen.style.display = "none";
+const grid =
+document.getElementById(gridId);
 
-    const video =
-        document.getElementById("videoPlayer");
+grid.innerHTML = "";
 
-    video.pause();
 
-    document.body.style.overflow = "auto";
+const items =
+content.filter(
+item =>
+item.category === category
+);
+
+
+items.forEach(item => {
+
+grid.appendChild(
+createCard(item)
+);
+
+});
 
 }
 
 
-/* =========================
-   SEARCH
-========================= */
+/*
+====================================================
+LOAD EVERYTHING
+====================================================
+*/
+
+function loadAll() {
+
+displayCategory(
+"Movies",
+"moviesGrid"
+);
+
+displayCategory(
+"Series",
+"seriesGrid"
+);
+
+displayCategory(
+"Anime",
+"animeGrid"
+);
+
+displayCategory(
+"Short Dramas",
+"shortDramasGrid"
+);
+
+}
+
+
+/*
+====================================================
+SHOW CATEGORY
+====================================================
+*/
+
+function showCategory(category) {
+
+const sections = {
+
+"Movies":
+"moviesSection",
+
+"Series":
+"seriesSection",
+
+"Anime":
+"animeSection",
+
+"Short Dramas":
+"shortDramasSection"
+
+};
+
+
+const section =
+document.getElementById(
+sections[category]
+);
+
+
+if(section) {
+
+section.scrollIntoView({
+behavior: "smooth"
+});
+
+}
+
+}
+
+
+/*
+====================================================
+HOME
+====================================================
+*/
+
+function showHome() {
+
+document.getElementById(
+"searchBox"
+).value = "";
+
+
+document.getElementById(
+"moviesSection"
+).style.display = "block";
+
+document.getElementById(
+"seriesSection"
+).style.display = "block";
+
+document.getElementById(
+"animeSection"
+).style.display = "block";
+
+document.getElementById(
+"shortDramasSection"
+).style.display = "block";
+
+
+window.scrollTo({
+
+top: 0,
+
+behavior: "smooth"
+
+});
+
+}
+
+
+/*
+====================================================
+SEARCH
+====================================================
+*/
 
 function searchContent() {
 
-    const input =
-        document
-        .getElementById("searchBox")
-        .value
-        .toLowerCase();
+const query =
+document.getElementById(
+"searchBox"
+).value
+.toLowerCase()
+.trim();
 
-    const cards =
-        document.querySelectorAll(".card");
 
-    cards.forEach(function(card) {
+const sections = [
 
-        const title =
-            card
-            .getAttribute("data-title")
-            .toLowerCase();
+"moviesSection",
+"seriesSection",
+"animeSection",
+"shortDramasSection"
 
-        if (title.includes(input)) {
+];
 
-            card.style.display = "";
 
-        } else {
+if(query === "") {
 
-            card.style.display = "none";
+showHome();
 
-        }
-
-    });
+return;
 
 }
 
 
-/* =========================
-   CATEGORY FILTER
-========================= */
+/*
+Hide every section first.
+*/
 
-function filterCategory(category) {
+sections.forEach(
+id => {
 
-    const cards =
-        document.querySelectorAll(".card");
+document.getElementById(
+id
+).style.display = "none";
 
-    cards.forEach(function(card) {
+});
 
-        if (
-            category === "all" ||
-            card.getAttribute("data-category") === category
-        ) {
 
-            card.style.display = "";
+/*
+Create search results
+inside Movies section.
+*/
 
-        } else {
+const results =
+content.filter(item =>
 
-            card.style.display = "none";
+item.title
+.toLowerCase()
+.includes(query)
 
-        }
+||
 
-    });
+item.category
+.toLowerCase()
+.includes(query)
+
+);
+
+
+const moviesSection =
+document.getElementById(
+"moviesSection"
+);
+
+
+moviesSection.style.display =
+"block";
+
+
+const grid =
+document.getElementById(
+"moviesGrid"
+);
+
+
+grid.innerHTML = "";
+
+
+results.forEach(item => {
+
+grid.appendChild(
+createCard(item)
+);
+
+});
 
 }
 
 
-/* =========================
-   MY LIST
-========================= */
+/*
+====================================================
+OPEN PLAYER
+====================================================
+*/
 
-function addToList(title) {
+function openPlayer(item) {
 
-    let list =
-        JSON.parse(
-            localStorage.getItem("tinkyList")
-        ) || [];
+const screen =
+document.getElementById(
+"playerScreen"
+);
 
-    if (!list.includes(title)) {
+const frame =
+document.getElementById(
+"videoFrame"
+);
 
-        list.push(title);
 
-        localStorage.setItem(
-            "tinkyList",
-            JSON.stringify(list)
-        );
+document.getElementById(
+"playerTitle"
+).textContent =
+item.title;
 
-        alert(
-            title +
-            " has been added to My List!"
-        );
 
-    } else {
+document.getElementById(
+"descriptionTitle"
+).textContent =
+item.title;
 
-        alert(
-            title +
-            " is already in My List."
-        );
 
-    }
+document.getElementById(
+"descriptionText"
+).textContent =
+item.description;
+
+
+/*
+Load YouTube video.
+*/
+
+frame.src =
+"https://www.youtube.com/embed/"
++
+item.youtube
++
+"?autoplay=1&rel=0";
+
+
+screen.style.display =
+"block";
+
+
+document.body.style.overflow =
+"hidden";
 
 }
+
+
+/*
+====================================================
+CLOSE PLAYER
+====================================================
+*/
+
+function closePlayer() {
+
+const screen =
+document.getElementById(
+"playerScreen"
+);
+
+const frame =
+document.getElementById(
+"videoFrame"
+);
+
+
+frame.src = "";
+
+
+screen.style.display =
+"none";
+
+
+document.body.style.overflow =
+"auto";
+
+}
+
+
+/*
+====================================================
+START
+====================================================
+*/
+
+loadAll();
 
 </script>
 
