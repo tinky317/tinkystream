@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TinkyStream</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #080808;
+            color: white;
+        }
+
+        /* =========================
+           NAVIGATION BAR
+        ========================= */
+
+        .navbar {
+            height: 75px;
+            background: #0b0b0b;
+            border-bottom: 1px solid #351018;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 45px;
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            color: #ffffff;
+        }
+
+        .logo span {
+            color: #8f1730;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #a91e3b;
+        }
+
+        .search {
+            background: #151515;
+            border: 1px solid #3d1820;
+            color: white;
+
+            padding: 11px 16px;
+            border-radius: 25px;
+
+            width: 220px;
+            outline: none;
+        }
+
+        .search:focus {
+            border-color: #8f1730;
+        }
+
+        /* =========================
+           HERO SECTION
+        ========================= */
+
+        .hero {
+            min-height: 620px;
+
+            display: flex;
+            align-items: center;
+
+            padding: 70px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #080808 0%,
+                    #080808 35%,
+                    rgba(8,8,8,0.75) 65%,
+                    rgba(8,8,8,0.25) 100%
+                ),
+                radial-gradient(
+                    circle at 80% 50%,
+                    #571226,
+                    #12070a 45%,
+                    #080808 75%
+                );
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+
+            background: #74152b;
+            padding: 7px 14px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+            font-weight: bold;
+
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 68px;
+            line-height: 0.95;
+
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #a91e3b;
+        }
+
+        .hero p {
+            color: #c9c9c9;
+            line-height: 1.7;
+            font-size: 16px;
+
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 13px 25px;
+            border: none;
+            border-radius: 7px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .watch-btn {
+            background: #8f1730;
+            color: white;
+        }
+
+        .watch-btn:hover {
+            background: #b31f40;
+        }
+
+        .info-btn {
+            background: #252525;
+            color: white;
+        }
+
+        /* =========================
+           MAIN CONTENT
+        ========================= */
+
+        main {
+            padding: 35px 45px 70px;
+        }
+
+        .section {
+            margin-bottom: 45px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 18px;
+        }
+
+        .section-header h2 {
+            font-size: 24px;
+        }
+
+        .see-all {
+            color: #a91e3b;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        /* =========================
+           CONTENT CARDS
+        ========================= */
+
+        .cards {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fill, minmax(170px, 1fr));
+
+            gap: 18px;
+        }
+
+        .card {
+            background: #111;
+
+            border-radius: 9px;
+            overflow: hidden;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            border: 1px solid #1d1d1d;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            border-color: #6f1529;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.6);
+        }
+
+        .poster {
+            height: 245px;
+
+            display: flex;
+            align-items: flex-end;
+
+            padding: 12px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #40101d,
+                    #12070a
+                );
+        }
+
+        .poster-number {
+            font-size: 55px;
+            font-weight: 900;
+
+            color: rgba(255,255,255,0.12);
+        }
+
+        .card-info {
+            padding: 12px;
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: bold;
+
+            margin-bottom: 7px;
+        }
+
+        .card-meta {
+            font-size: 12px;
+            color: #888;
+        }
+
+        /* =========================
+           LIVE SECTION
+        ========================= */
+
+        .live-section {
+            background:
+                linear-gradient(
+                    100deg,
+                    #18070b,
+                    #260b13,
+                    #100609
+                );
+
+            border: 1px solid #4d1522;
+
+            border-radius: 14px;
+
+            padding: 25px;
+
+            margin-bottom: 45px;
+        }
+
+        .live-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            margin-bottom: 20px;
+        }
+
+        .live-dot {
+            width: 10px;
+            height: 10px;
+
+            background: #e3264f;
+
+            border-radius: 50%;
+
+            box-shadow: 0 0 12px #e3264f;
+        }
+
+        .live-card {
+            background: #10090b;
+
+            padding: 20px;
+
+            border-radius: 9px;
+
+            border: 1px solid #38131c;
+        }
+
+        .live-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .live-card p {
+            color: #999;
+            font-size: 13px;
+        }
+
+        /* =========================
+           CATEGORY BUTTONS
+        ========================= */
+
+        .categories {
+            display: flex;
+
+            gap: 10px;
+
+            overflow-x: auto;
+
+            padding-bottom: 10px;
+        }
+
+        .category {
+            background: #151515;
+
+            border: 1px solid #302020;
+
+            color: #ddd;
+
+            padding: 10px 18px;
+
+            border-radius: 25px;
+
+            cursor: pointer;
+
+            white-space: nowrap;
+        }
+
+        .category:hover,
+        .category.active {
+            background: #7d162d;
+            border-color: #8f1730;
+            color: white;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            border-top: 1px solid #251014;
+
+            padding: 35px 45px;
+
+            color: #666;
+
+            text-align: center;
+
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: #8f1730;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .search {
+                width: 150px;
+            }
+
+            .hero {
+                padding: 45px 25px;
+                min-height: 500px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            main {
+                padding: 30px 20px;
+            }
+
+            .cards {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .poster {
+                height: 210px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        Tinky<span>Stream</span>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#movies">Movies</a></li>
+        <li><a href="#series">Series</a></li>
+        <li><a href="#anime">Anime</a></li>
+        <li><a href="#drama">Short Dramas</a></li>
+        <li><a href="#live">Live</a></li>
+    </ul>
+
+    <input
+        class="search"
+        id="search"
+        type="text"
+        placeholder="Search..."
+        onkeyup="searchMovies()"
+    >
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-badge">
+            🔥 FEATURED
+        </div>
+
+        <h1>
+            Welcome to<br>
+            <span>TinkyStream</span>
+        </h1>
+
+        <p>
+            Your entertainment universe. Discover movies,
+            series, anime, short dramas and live entertainment
+            all in one place.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button
+                class="btn watch-btn"
+                onclick="playContent('Featured')">
+                ▶️ Watch Now
+            </button>
+
+            <button
+                class="btn info-btn">
+                + My List
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<main>
+
+<!-- =========================
+     CATEGORIES
+========================= -->
+
+<section class="section">
+
+    <div class="section-header">
+        <h2>Browse</h2>
+    </div>
+
+    <div class="categories">
+
+        <button class="category active"
+            onclick="filterCategory('all')">
+            All
+        </button>
+
+        <button class="category"
+            onclick="filterCategory('movie')">
+            🎬 Movies
+        </button>
+
+        <button class="category"
+            onclick="filterCategory('series')">
+            📺 Series
+        </button>
+
+        <button class="category"
+            onclick="filterCategory('anime')">
+            🌸 Anime
+        </button>
+
+        <button class="category"
+            onclick="filterCategory('drama')">
+            💕 Short Dramas
+        </button>
+
+        <button class="category"
+            onclick="filterCategory('documentary')">
+            🎥 Documentaries
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     LIVE
+========================= -->
+
+<section class="live-section" id="live">
+
+    <div class="live-title">
+
+        <div class="live-dot"></div>
+
+        <h2>Live Now</h2>
+
+    </div>
+
+    <div class="live-card">
+
+        <h3>🔴 Live Entertainment</h3>
+
+        <p>
+            Live channels and events available through
+            your licensed streaming sources.
+        </p>
+
+        <br>
+
+        <button
+            class="btn watch-btn"
+            onclick="playContent('Live')">
+            Watch Live
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     MOVIES
+========================= -->
+
+<section class="section" id="movies">
+
+    <div class="section-header">
+
+        <h2>Popular Movies</h2>
+
+        <a class="see-all" href="#">
+            See All →
+        </a>
+
+    </div>
+
+    <div class="cards" id="movieCards">
+
+        <div class="card" data-category="movie"
+             onclick="playContent('Movie 01')">
+
+            <div class="poster">
+                <div class="poster-number">01</div>
+            </div>
+
+            <div class="card-info">
+                <div class="card-title">
+                    Movie 01
+                </div>
+
+                <div class="card-meta">
+                    Movie • 2026
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="card" data-category="movie"
+             onclick="playContent('Movie 02')">
+
+            <div class="poster">
+                <div class="poster-number">02</div>
+            </div>
+
+            <div class="card-info">
+                <div class="card-title">
+                    Movie 02
+                </div>
+
+                <div class="card-meta">
+                    Movie • 2026
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="card" data-category="movie"
+             onclick="playContent('Movie 03')">
+
+            <div class="poster">
+                <div class="poster-number">03</div>
+            </div>
+
+            <div class="card-info">
+                <div class="card-title">
+                    Movie 03
+                </div>
+
+                <div class="card-meta">
+                    Movie • 2026
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="card" data-category="movie"
+             onclick="playContent('Movie 04')">
+
+            <div class="poster">
+                <div class="poster-number">04</div>
+            </div>
+
+            <div class="card-info">
+                <div class="card-title">
+                    Movie 04
+                </div>
+
+                <div class="card-meta">
+                    Movie • 2026
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SERIES
+========================= -->
+
+<section class="section" id="series">
+
+    <div class="section-header">
+        <h2>Trending Series</h2>
+
+        <a class="see-all" href="#">
+            See All →
+        </a>
+    </div>
+
+    <div class="cards">
+
+        <div class="card" data-category="series"
+             onclick="playContent('Series 01')">
+
+            <div class="poster">
+                <div class="poster-number">01</div>
+            </div>
+
+            <div class="card-info">
+
+                <div class="card-title">
+                    Series 01
+                </div>
+
+                <div class="card-meta">
+                    Series • 2 Seasons
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card" data-category="series"
+             onclick="playContent('Series 02')">
+
+            <div class="poster">
+                <div class="poster-number">02</div>
+            </div>
+
+            <div class="card-info">
+
+                <div class="card-title">
+                    Series 02
+                </div>
+
+                <div class="card-meta">
+                    Series • 1 Season
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card" data-category="series"
+             onclick="playContent('Series 03')">
+
+            <div class="poster">
+                <div class="poster-number">03</div>
+            </div>
+
+            <div class="card-info">
+
+                <div class="card-title">
+                    Series 03
+                </div>
+
+                <div class="card-meta">
+                    Series • New
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ANIME
+========================= -->
+
+<section class="section" id="anime">
+
+    <div class="section-header">
+        <h2>Anime</h2>
+
+        <a class="see-all" href="#">
+            See All →
+        </a>
+    </div>
+
+    <div class="cards">
+
+        <div class="card" data-category="anime"
+             onclick="playContent('Anime 01')">
+
+            <div class="poster">
+                <div class="poster-number">01</div>
+            </div>
+
+            <div class="card-info">
+
+                <div class="card-title">
+                    Anime 01
+                </div>
+
+                <div class="card-meta">
+                    Anime • Sub & Dub
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card" data-category="anime"
+             onclick="playContent('Anime 02')">
+
+            <div class="poster">
+                <div class="poster-number">02</div>
+            </div>
+
+            <div class="card-info">
+
+                <div class="card-title">
+                    Anime 02
+                </div>
+
+                <div class="card-meta">
+                    Anime • 24 Episodes
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card" data-category="anime"
+             onclick="playContent('Anime 03')">
+
+            <div class="poster">
+                <div class="poster-number">03</div>
+            </div>
+
+            <div class="card-info">
+
+                <div class="card-title">
+                    Anime 03
+                </div>
+
+                <div class="card-meta">
+                    Anime • New
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SHORT DRAMAS
+========================= -->
+
+<section class="section" id="drama">
+
+    <div class="section-header">
+        <h2>Short Dramas</h2>
+
+        <a class="see-all" href="#">
+            See All →
+        </a>
+    </div>
+
+    <div class="cards">
+
+        <div class="card" data-category="drama"
+             onclick="playContent('Drama 01')">
+
+            <div class="poster">
+                <div class="poster-number">01</div>
+            </div>
+
+            <div class="card-info">
+
+                <div class="card-title">
+                    Drama 01
+                </div>
+
+                <div class="card-meta">
+                    Short Drama • 12 Episodes
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card" data-category="drama"
+             onclick="playContent('Drama 02')">
+
+            <div class="poster">
+                <div class="poster-number">02</div>
+            </div>
+
+            <div class="card-info">
+
+                <div class="card-title">
+                    Drama 02
+                </div>
+
+                <div class="card-meta">
+                    Short Drama • 8 Episodes
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <strong>TinkyStream</strong>
+
+    <br><br>
+
+    Your entertainment universe.
+
+    <br><br>
+
+    © 2026 TinkyStream
+
+</footer>
+
+
+<script>
+
+    /* =========================
+       WATCH BUTTON
+    ========================= */
+
+    function playContent(title) {
+
+        alert(
+            "Opening " +
+            title +
+            "...\n\n" +
+            "Connect this button to your licensed video player."
+        );
+
+    }
+
+
+    /* =========================
+       SEARCH
+    ========================= */
+
+    function searchMovies() {
+
+        let input =
+            document
+            .getElementById("search")
+            .value
+            .toLowerCase();
+
+        let cards =
+            document.querySelectorAll(".card");
+
+        cards.forEach(function(card) {
+
+            let title =
+                card
+                .querySelector(".card-title")
+                .textContent
+                .toLowerCase();
+
+            if (title.includes(input)) {
+
+                card.style.display = "";
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+    }
+
+
+    /* =========================
+       CATEGORY FILTER
+    ========================= */
+
+    function filterCategory(category) {
+
+        let cards =
+            document.querySelectorAll(".card");
+
+        cards.forEach(function(card) {
+
+            if (
+                category === "all" ||
+                card.dataset.category === category
+            ) {
+
+                card.style.display = "";
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+    }
+
+</script>
+
+</body>
+</html>
